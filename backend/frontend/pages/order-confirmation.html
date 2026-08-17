@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Confirmation - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html" id="cartLink">Cart</a>
+      <a href="orders.html" id="ordersLink">My Orders</a>
+      <a href="profile.html" id="profileLink">My Profile</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="checkout-wrap">
+    <div id="confirmation-content" style="display:none">
+      <div class="confirmation-card">
+        <div class="confirmation-header">
+          <div class="checkmark">✓</div>
+          <h1>Order Confirmed!</h1>
+          <p class="muted">Order #<span id="orderId"></span></p>
+        </div>
+
+        <div class="confirmation-body">
+          <div class="info-section">
+            <h3>Order Details</h3>
+            <table class="confirmation-table">
+              <tr>
+                <td><strong>Order ID</strong></td>
+                <td id="orderIdDetail"></td>
+              </tr>
+              <tr>
+                <td><strong>Status</strong></td>
+                <td id="orderStatus"></td>
+              </tr>
+              <tr>
+                <td><strong>Delivery Mode</strong></td>
+                <td id="orderDeliveryMode"></td>
+              </tr>
+              <tr>
+                <td><strong>Delivery Address</strong></td>
+                <td id="orderDeliveryAddress">—</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="info-section">
+            <h3>Order Items</h3>
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Dates</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody id="orderItemsDetail"></tbody>
+            </table>
+          </div>
+
+          <div class="info-section">
+            <h3>Payment Summary</h3>
+            <div class="cart-summary">
+              <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="confirmSubtotal">₹0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Deposit Paid (30%):</span>
+                <span id="confirmDeposit">₹0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Balance Due at Pickup:</span>
+                <span id="confirmBalance">₹0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>Next Steps</h3>
+            <ol class="next-steps">
+              <li>You will receive a confirmation email with your order details.</li>
+              <li>Our team will contact you to confirm the pickup/delivery date.</li>
+              <li>Pay the remaining balance at pickup or delivery.</li>
+              <li>Enjoy your rental!</li>
+            </ol>
+          </div>
+
+          <div style="margin-top: 30px; display: flex; gap: 12px;">
+            <button onclick="window.location.href='browse.html'">Continue Shopping</button>
+            <button class="secondary" onclick="window.location.href='profile.html'">View My Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="error-content" style="display:none">
+      <div class="confirmation-card error-card">
+        <h2>Unable to Load Order</h2>
+        <p id="errorMessage"></p>
+        <button onclick="window.location.href='cart.html'">Back to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/order-confirmation.js"></script>
+</body>
+</html>

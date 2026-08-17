@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Rental Periods - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-card">
+      <h2 id="formTitle">Add Rental Period</h2>
+      <form id="rentalPeriodForm">
+        <input type="hidden" id="rentalPeriodId">
+        <div class="form-row">
+          <div>
+            <label>Product</label>
+            <select id="productId" required>
+              <option value="">-- Select Product --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Min Duration</label>
+            <input type="text" id="minDuration" required>
+          </div>
+          <div>
+            <label>Max Duration (optional)</label>
+            <input type="text" id="maxDuration">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Unit</label>
+            <select id="unit" required>
+              <option value="">-- Select Unit --</option>
+              <option value="hour">Hour</option>
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit" style="max-width:200px">Save Rental Period</button>
+          <button type="button" class="secondary" id="cancelEditBtn" style="max-width:200px">Cancel</button>
+        </div>
+        <div class="error" id="formError"></div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <h2>Rental Periods</h2>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Product</th><th>Min Duration</th><th>Max Duration</th><th>Unit</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="rentalPeriodsTableBody"></tbody>
+      </table>
+      <div class="error" id="listError"></div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-rental-periods.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Products - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-card">
+      <h2 id="formTitle">Add Product</h2>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <div class="form-row">
+          <div>
+            <label>Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div>
+            <label>SKU</label>
+            <input type="text" id="sku">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Category</label>
+            <select id="category">
+              <option value="">Select category</option>
+              <option value="Plywood">Plywood</option>
+              <option value="MICA/Laminate">MICA / Laminate</option>
+              <option value="Veneer">Veneer</option>
+              <option value="Block Board">Block Board</option>
+              <option value="MDF Board">MDF Board</option>
+              <option value="Hardware & Fittings">Hardware &amp; Fittings</option>
+              <option value="Adhesives & Chemicals">Adhesives &amp; Chemicals</option>
+            </select>
+          </div>
+          <div>
+            <label>Base Price (INR)</label>
+            <input type="number" id="basePrice" step="0.01" min="0" required>
+          </div>
+        </div>
+        <label>Description</label>
+        <textarea id="description" rows="2"></textarea>
+        <label>Image URL</label>
+        <input type="text" id="image">
+        <label>Or upload an image (PNG/JPEG)</label>
+        <input type="file" id="imageFile" accept="image/png,image/jpeg">
+        <div class="error" id="imageUploadError"></div>
+        <img id="imagePreview" alt="" style="display:none;max-width:160px;margin-top:8px;border:1px solid #ccc;">
+        <div class="checkbox-row">
+          <input type="checkbox" id="active" checked>
+          <label style="margin:0">Active</label>
+        </div>
+        <div class="form-row">
+          <button type="submit" style="max-width:200px">Save Product</button>
+          <button type="button" class="secondary" id="cancelEditBtn" style="max-width:200px">Cancel</button>
+        </div>
+        <div class="error" id="formError"></div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <h2>Products</h2>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Name</th><th>Category</th><th>SKU</th><th>Base Price</th><th>Active</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="productsTableBody"></tbody>
+      </table>
+      <div class="error" id="listError"></div>
+    </div>
+
+    <div class="admin-card" id="variantsCard" style="display:none">
+      <h2>Variants for <span id="variantsProductName"></span></h2>
+      <form id="variantForm">
+        <input type="hidden" id="variantId">
+        <div class="form-row">
+          <div>
+            <label>Attribute Name (e.g. Color)</label>
+            <input type="text" id="variantAttributeName" required>
+          </div>
+          <div>
+            <label>Attribute Value (e.g. Red)</label>
+            <input type="text" id="variantAttributeValue" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Price Delta (INR)</label>
+            <input type="number" id="variantPriceDelta" step="0.01" value="0">
+          </div>
+          <div>
+            <label>Stock Qty</label>
+            <input type="text" id="variantStockQty" value="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit" style="max-width:200px">Save Variant</button>
+          <button type="button" class="secondary" id="cancelVariantEditBtn" style="max-width:200px">Cancel</button>
+        </div>
+        <div class="error" id="variantFormError"></div>
+      </form>
+
+      <table class="admin-table">
+        <thead>
+          <tr><th>Attribute</th><th>Value</th><th>Price Delta</th><th>Stock Qty</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="variantsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-products.js"></script>
+</body>
+</html>

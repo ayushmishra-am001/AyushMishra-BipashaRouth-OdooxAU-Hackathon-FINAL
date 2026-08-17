@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard - AM.BS Admin</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h1>Dashboard</h1>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+
+    <div class="error" id="pageError"></div>
+
+    <div class="quick-actions">
+      <a class="button-link" href="admin-quotations.html">+ Create Quotation</a>
+      <a class="button-link" href="admin-pickups.html">+ Schedule Pickup</a>
+      <a class="button-link" href="admin-returns.html">+ Record Return</a>
+    </div>
+
+    <div id="statGrid" class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Active Rentals</div>
+        <div class="stat-value" id="statActiveRentals">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Rentals Due Today</div>
+        <div class="stat-value" id="statRentalsDueToday">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Upcoming Pickups (7d)</div>
+        <div class="stat-value" id="statUpcomingPickups">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Upcoming Returns (7d)</div>
+        <div class="stat-value" id="statUpcomingReturns">—</div>
+      </div>
+      <div class="stat-card stat-alert">
+        <div class="stat-label">Overdue Rentals</div>
+        <div class="stat-value" id="statOverdueRentals">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Revenue (Last 30d)</div>
+        <div class="stat-value" id="statRevenue">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Security Deposits Held</div>
+        <div class="stat-value" id="statDepositsHeld">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Late Fee Collection</div>
+        <div class="stat-value" id="statLateFees">—</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

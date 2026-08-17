@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quotation Templates - AM.BS Admin</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h1>Quotation Templates</h1>
+      <button id="createTemplateBtn">+ Create Template</button>
+    </div>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="emptyState" style="display:none" class="empty-state">
+      <p>No quotation templates yet.</p>
+      <button onclick="document.getElementById('createTemplateBtn').click()">Create First Template</button>
+    </div>
+
+    <table id="templatesTable" class="admin-table" style="display:none">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Header</th>
+          <th>Footer</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="templatesList"></tbody>
+    </table>
+  </div>
+
+  <!-- Create/Edit Modal -->
+  <div id="templateModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Create Template</h2>
+        <button class="modal-close" onclick="closeTemplateModal()">&times;</button>
+      </div>
+      <form id="templateForm">
+        <div class="form-row">
+          <label>Template Name *</label>
+          <input type="text" id="templateName" required placeholder="e.g., Standard Quote">
+        </div>
+        <div class="form-row">
+          <label>Header Text</label>
+          <textarea id="templateHeader" rows="3" placeholder="Optional header text for quotations"></textarea>
+        </div>
+        <div class="form-row">
+          <label>Footer Text</label>
+          <textarea id="templateFooter" rows="3" placeholder="Optional footer text for quotations"></textarea>
+        </div>
+        <div class="form-row">
+          <button type="submit">Save Template</button>
+          <button type="button" class="secondary" onclick="closeTemplateModal()">Cancel</button>
+        </div>
+        <div class="error" id="formError"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-quotation-templates.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Returns - AM.BS Admin</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h1>Returns</h1>
+      <button id="createReturnBtn">+ Record Return</button>
+    </div>
+
+    <div class="form-row" style="margin-bottom: 12px;">
+      <div>
+        <label>Filter by Order ID</label>
+        <input type="number" id="filterOrderId" min="1" placeholder="e.g., 42">
+      </div>
+      <div style="align-self: end;">
+        <button type="button" id="applyFilterBtn">Apply</button>
+        <button type="button" id="clearFilterBtn" class="secondary">Clear</button>
+      </div>
+    </div>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="emptyState" style="display:none" class="empty-state">
+      <p>No returns recorded yet.</p>
+      <button onclick="document.getElementById('createReturnBtn').click()">Record First Return</button>
+    </div>
+
+    <table id="returnsTable" class="admin-table" style="display:none">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Order</th>
+          <th>Returned At</th>
+          <th>Late Hours</th>
+          <th>Damage</th>
+          <th>Late Fee</th>
+          <th>Stock Updated</th>
+          <th>Deposit</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="returnsList"></tbody>
+    </table>
+  </div>
+
+  <!-- Create Return Modal -->
+  <div id="createReturnModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Record Return</h2>
+        <button class="modal-close" onclick="closeCreateReturnModal()">&times;</button>
+      </div>
+      <form id="createReturnForm">
+        <div class="form-row">
+          <div>
+            <label>Order ID *</label>
+            <input type="number" id="returnOrderId" required min="1" placeholder="e.g., 42">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Condition Notes</label>
+            <input type="text" id="returnConditionNotes" placeholder="e.g., Minor scuff on frame">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label><input type="checkbox" id="returnDamageReported" style="width:auto; display:inline-block;"> Damage reported</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit">Record Return</button>
+          <button type="button" class="secondary" onclick="closeCreateReturnModal()">Cancel</button>
+        </div>
+        <div class="error" id="createFormError"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Return Modal -->
+  <div id="viewReturnModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Return #<span id="viewReturnId"></span></h2>
+        <button class="modal-close" onclick="closeViewReturnModal()">&times;</button>
+      </div>
+      <div class="quotation-info">
+        <p><strong>Order:</strong> #<span id="viewOrderId"></span></p>
+        <p><strong>Returned At:</strong> <span id="viewReturnedAt"></span></p>
+        <p><strong>Late Hours:</strong> <span id="viewLateHours"></span></p>
+        <p><strong>Damage Reported:</strong> <span id="viewDamage"></span></p>
+        <p><strong>Late Fee Charged:</strong> <span id="viewLateFee"></span></p>
+        <p><strong>Stock Updated:</strong> <span id="viewStockUpdated"></span></p>
+        <p><strong>Condition Notes:</strong> <span id="viewConditionNotes"></span></p>
+      </div>
+      <div class="form-row">
+        <button type="button" class="secondary" onclick="closeViewReturnModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-returns.js"></script>
+</body>
+</html>

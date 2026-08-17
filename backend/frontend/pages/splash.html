@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="splash-hero">
+    <div class="stamp-ring"><span>AM</span></div>
+    <p class="eyebrow">Home Interior Materials on Rent</p>
+    <h1>AM<span class="dot">.</span>BS</h1>
+    <p class="tagline">Plywood, MICA, veneer &amp; more — rented, delivered, returned.</p>
+    <div class="loading-bar"><span></span></div>
+  </div>
+  <script>
+    // Read the role out of the saved token (just the payload, no signature
+    // check needed here — this is only a UX shortcut for where to land;
+    // every route still checks the real token server-side).
+    function roleFromToken(token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.role || null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    setTimeout(() => {
+      const token = localStorage.getItem('rms_token');
+      if (!token) {
+        window.location.href = 'login.html';
+        return;
+      }
+      const role = roleFromToken(token);
+      if (role === 'admin') {
+        window.location.href = 'admin-dashboard.html';
+      } else if (role === 'customer') {
+        window.location.href = 'browse.html';
+      } else {
+        // Token present but unreadable/corrupt — treat as logged out.
+        localStorage.removeItem('rms_token');
+        window.location.href = 'login.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

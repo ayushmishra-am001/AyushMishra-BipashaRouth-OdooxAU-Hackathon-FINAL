@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse Interior Materials - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html" id="cartLink" style="display:none">Cart</a>
+      <a href="orders.html" id="ordersLink" style="display:none">My Orders</a>
+      <a href="profile.html" id="profileLink" style="display:none">My Profile</a>
+      <a href="login.html" id="loginLink">Log In</a>
+      <a href="#" id="logoutLink" style="display:none">Log Out</a>
+    </div>
+  </div>
+
+  <div class="browse-wrap">
+    <h2>Browse Interior Materials</h2>
+    <div class="filter-row">
+      <div>
+        <label>Category</label>
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="Plywood">Plywood</option>
+          <option value="MICA/Laminate">MICA / Laminate</option>
+          <option value="Veneer">Veneer</option>
+          <option value="Block Board">Block Board</option>
+          <option value="MDF Board">MDF Board</option>
+          <option value="Hardware & Fittings">Hardware &amp; Fittings</option>
+          <option value="Adhesives & Chemicals">Adhesives &amp; Chemicals</option>
+        </select>
+      </div>
+      <button type="button" id="applyFilterBtn">Apply Filter</button>
+      <button type="button" class="secondary" id="clearFilterBtn">Clear</button>
+    </div>
+    <div class="error" id="listError"></div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none">No products found.</div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/browse.js"></script>
+</body>
+</html>

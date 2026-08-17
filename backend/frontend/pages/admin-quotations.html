@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quotations - AM.BS Admin</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h1>Quotations</h1>
+      <button id="createQuotationBtn">+ Create Quotation</button>
+    </div>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="emptyState" style="display:none" class="empty-state">
+      <p>No quotations yet.</p>
+      <button onclick="document.getElementById('createQuotationBtn').click()">Create First Quotation</button>
+    </div>
+
+    <table id="quotationsTable" class="admin-table" style="display:none">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer</th>
+          <th>Items</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="quotationsList"></tbody>
+    </table>
+  </div>
+
+  <!-- Create Quotation Modal -->
+  <div id="createQuotationModal" class="modal" style="display:none">
+    <div class="modal-content modal-wide">
+      <div class="modal-header">
+        <h2>Create Quotation</h2>
+        <button class="modal-close" onclick="closeCreateQuotationModal()">&times;</button>
+      </div>
+      <form id="createQuotationForm">
+        <div class="form-row">
+          <label>Customer *</label>
+          <select id="customerSelect" required>
+            <option value="">Select a customer...</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Template (optional)</label>
+          <select id="templateSelect">
+            <option value="">No template</option>
+          </select>
+        </div>
+
+        <div class="quotation-items-section">
+          <h3>Items</h3>
+          <div id="itemsList"></div>
+          <button type="button" id="addItemBtn" class="secondary">+ Add Item</button>
+        </div>
+
+        <div class="form-row">
+          <button type="submit">Create Quotation</button>
+          <button type="button" class="secondary" onclick="closeCreateQuotationModal()">Cancel</button>
+        </div>
+        <div class="error" id="formError"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Quotation Modal -->
+  <div id="viewQuotationModal" class="modal" style="display:none">
+    <div class="modal-content modal-wide">
+      <div class="modal-header">
+        <h2>Quotation #<span id="viewQuotationId"></span></h2>
+        <button class="modal-close" onclick="closeViewQuotationModal()">&times;</button>
+      </div>
+      <div class="quotation-view">
+        <div class="quotation-info">
+          <p><strong>Customer:</strong> <span id="viewCustomerId"></span></p>
+          <p><strong>Status:</strong> <span id="viewStatus"></span></p>
+          <p><strong>Created:</strong> <span id="viewCreated"></span></p>
+        </div>
+
+        <h3>Items</h3>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="viewItemsList"></tbody>
+        </table>
+
+        <div class="quotation-summary">
+          <p><strong>Subtotal:</strong> <span id="viewSubtotal">₹0.00</span></p>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; gap: 12px;">
+          <button id="confirmQuotationBtn">Confirm Quotation</button>
+          <button class="danger" id="deleteQuotationBtn">Delete Quotation</button>
+          <button class="secondary" onclick="closeViewQuotationModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-quotations.js"></script>
+</body>
+</html>

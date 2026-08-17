@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .info-message {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #bee5eb;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="center-screen">
+    <div class="auth-brand"><span class="brand-mark">A</span><span class="mark">AM.BS</span><span class="tag">RMS</span></div>
+    <div class="card">
+      <h2>Create Account</h2>
+      <div class="info-message">
+        ℹ️ After signing up, you'll receive an email verification link. Please verify your email to complete registration.
+      </div>
+      <form id="signupForm">
+        <label>Full Name</label>
+        <input type="text" id="name" required>
+        <label>Email</label>
+        <input type="email" id="email" required>
+        <label>Phone</label>
+        <input type="tel" id="phone">
+        <label>Password</label>
+        <input type="password" id="password" required minlength="6">
+        <label>Account Type</label>
+        <select id="role">
+          <option value="customer" selected>Customer</option>
+          <option value="admin">Admin</option>
+        </select>
+        <div id="adminKeyField" style="display:none">
+          <label>Admin Key</label>
+          <input type="password" id="adminKey" autocomplete="off">
+        </div>
+        <button type="submit">Sign Up</button>
+        <div class="error" id="errorMsg"></div>
+      </form>
+      <div class="link-row">Already have an account? <a href="login.html">Log in</a></div>
+    </div>
+  </div>
+  <script src="../js/api.js"></script>
+  <script src="../js/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="center-screen">
+    <div class="auth-brand"><span class="brand-mark">A</span><span class="mark">AM.BS</span><span class="tag">RMS</span></div>
+    <div class="card">
+      <h2>Log In</h2>
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="email" required>
+        <label>Password</label>
+        <input type="password" id="password" required>
+        <button type="submit">Log In</button>
+        <div class="error" id="errorMsg"></div>
+      </form>
+      <div class="link-row">No account? <a href="signup.html">Sign up</a></div>
+    </div>
+  </div>
+  <script src="../js/api.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

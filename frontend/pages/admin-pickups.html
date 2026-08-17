@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pickups - AM.BS Admin</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h1>Pickup Schedules</h1>
+      <button id="createPickupBtn">+ Schedule Pickup</button>
+    </div>
+
+    <div class="form-row" style="margin-bottom: 12px;">
+      <div>
+        <label>Filter by date</label>
+        <input type="date" id="filterDate">
+      </div>
+      <div>
+        <label>Filter by status</label>
+        <select id="filterStatus">
+          <option value="">All</option>
+          <option value="pending">Pending</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+      <div style="align-self: end;">
+        <button type="button" id="clearFiltersBtn" class="secondary">Clear Filters</button>
+      </div>
+    </div>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="emptyState" style="display:none" class="empty-state">
+      <p>No pickup schedules yet.</p>
+      <button onclick="document.getElementById('createPickupBtn').click()">Schedule First Pickup</button>
+    </div>
+
+    <table id="pickupsTable" class="admin-table" style="display:none">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Order</th>
+          <th>Scheduled At</th>
+          <th>Status</th>
+          <th>Notes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="pickupsList"></tbody>
+    </table>
+  </div>
+
+  <!-- Create Pickup Modal -->
+  <div id="createPickupModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Schedule Pickup</h2>
+        <button class="modal-close" onclick="closeCreatePickupModal()">&times;</button>
+      </div>
+      <form id="createPickupForm">
+        <div class="form-row">
+          <div>
+            <label>Order ID *</label>
+            <input type="number" id="pickupOrderId" required min="1" placeholder="e.g., 42">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Scheduled Date/Time *</label>
+            <input type="datetime-local" id="pickupScheduledAt" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Notes</label>
+            <input type="text" id="pickupNotes" placeholder="Optional notes">
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit">Schedule Pickup</button>
+          <button type="button" class="secondary" onclick="closeCreatePickupModal()">Cancel</button>
+        </div>
+        <div class="error" id="createFormError"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Pickup Modal -->
+  <div id="editPickupModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Pickup #<span id="editPickupId"></span></h2>
+        <button class="modal-close" onclick="closeEditPickupModal()">&times;</button>
+      </div>
+      <form id="editPickupForm">
+        <div class="form-row">
+          <div>
+            <label>Scheduled Date/Time</label>
+            <input type="datetime-local" id="editScheduledAt">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Status</label>
+            <select id="editStatus">
+              <option value="pending">Pending</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Notes</label>
+            <input type="text" id="editNotes" placeholder="Optional notes">
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit">Save Changes</button>
+          <button type="button" class="secondary" onclick="closeEditPickupModal()">Cancel</button>
+        </div>
+        <div class="error" id="editFormError"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-pickups.js"></script>
+</body>
+</html>

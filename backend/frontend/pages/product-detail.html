@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html" id="cartLink" style="display:none">Cart</a>
+      <a href="orders.html" id="ordersLink" style="display:none">My Orders</a>
+      <a href="profile.html" id="profileLink" style="display:none">My Profile</a>
+      <a href="login.html" id="loginLink">Log In</a>
+      <a href="#" id="logoutLink" style="display:none">Log Out</a>
+    </div>
+  </div>
+
+  <div class="detail-wrap">
+    <a class="back-link" href="browse.html">&larr; Back to Browse</a>
+    <div class="error" id="loadError"></div>
+
+    <div id="productContent" style="display:none">
+      <div class="detail-grid">
+        <div class="detail-image">
+          <img id="productImg" src="" alt="">
+        </div>
+        <div class="detail-info">
+          <h1 id="productName"></h1>
+          <div class="cat" id="productCategory"></div>
+          <p id="productDescription"></p>
+
+          <table class="price-table">
+            <thead><tr><th>Unit</th><th>Price</th></tr></thead>
+            <tbody id="priceTableBody"></tbody>
+          </table>
+
+          <div id="periodsBlock" style="display:none">
+            <div class="section-title">Available Rental Periods</div>
+            <ul class="period-list" id="periodsList"></ul>
+          </div>
+
+          <form id="addToCartForm">
+            <div id="variantBlock" style="display:none">
+              <label>Variant</label>
+              <select id="variantSelect"></select>
+            </div>
+            <div class="form-row">
+              <div>
+                <label>Start Date</label>
+                <input type="date" id="startDate" required>
+              </div>
+              <div>
+                <label>End Date</label>
+                <input type="date" id="endDate" required>
+              </div>
+            </div>
+            <label>Quantity</label>
+            <input type="number" id="qty" class="qty-input" min="1" value="1" required>
+            <button type="submit">Add to Cart</button>
+            <div class="error" id="cartError"></div>
+            <div class="success" id="cartSuccess"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/product-detail.js"></script>
+</body>
+</html>

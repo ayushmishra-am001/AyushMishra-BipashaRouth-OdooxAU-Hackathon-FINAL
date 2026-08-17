@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Profile - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html">Cart</a>
+      <a href="orders.html">My Orders</a>
+      <a href="admin-dashboard.html" id="adminLink" style="display:none">Admin Dashboard</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+  <div class="center-screen">
+    <div class="card">
+      <img id="avatarImg" class="avatar" src="" alt="avatar">
+      <h2>My Profile</h2>
+      <form id="profileForm">
+        <label>Profile Image</label>
+        <input type="file" id="imageInput" accept="image/png, image/jpeg">
+        <label>Name</label>
+        <input type="text" id="name">
+        <label>Email</label>
+        <input type="email" id="email" disabled>
+        <label>Phone</label>
+        <input type="tel" id="phone">
+        <label>Address</label>
+        <textarea id="address" rows="3"></textarea>
+        <button type="submit">Save Changes</button>
+        <div class="error" id="errorMsg"></div>
+        <div class="success" id="successMsg"></div>
+      </form>
+    </div>
+  </div>
+  <script src="../js/api.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html">Cart</a>
+      <a href="orders.html" id="ordersLink" style="display:none">My Orders</a>
+      <a href="profile.html" id="profileLink" style="display:none">My Profile</a>
+      <a href="login.html" id="loginLink">Log In</a>
+      <a href="#" id="logoutLink" style="display:none">Log Out</a>
+    </div>
+  </div>
+
+  <div class="cart-wrap">
+    <a class="back-link" href="browse.html">&larr; Back to Browse</a>
+    <h1>Shopping Cart</h1>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="emptyState" style="display:none" class="empty-state">
+      <p>Your cart is empty.</p>
+      <p><a href="browse.html" class="back-link" style="display:inline">Continue Shopping</a></p>
+    </div>
+
+    <div id="cartContent" style="display:none">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Variant</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="cartItems"></tbody>
+      </table>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="subtotal">₹0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Deposit (30%):</span>
+          <span id="deposit">₹0.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span id="total">₹0.00</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 12px;">
+        <button id="checkoutBtn">Proceed to Checkout</button>
+        <button class="secondary" onclick="window.location.href='browse.html'">Continue Shopping</button>
+      </div>
+
+      <div class="error" id="actionError"></div>
+      <div class="success" id="actionSuccess"></div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>

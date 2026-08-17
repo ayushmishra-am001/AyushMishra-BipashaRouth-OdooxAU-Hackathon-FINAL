@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Price Lists - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-pricelists.html">Pricelists</a>
+      <a href="admin-rental-periods.html">Rental Periods</a>
+      <a href="admin-quotation-templates.html">Quotation Templates</a>
+      <a href="admin-quotations.html">Quotations</a>
+      <a href="admin-pickups.html">Pickups</a>
+      <a href="admin-returns.html">Returns</a>
+      <a href="admin-late-fee-rules.html">Late Fee Rules</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-card">
+      <h2 id="formTitle">Add Price List</h2>
+      <form id="pricelistForm">
+        <input type="hidden" id="pricelistId">
+        <div class="form-row">
+          <div>
+            <label>Name</label>
+            <input type="text" id="name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Valid From (date)</label>
+            <input type="date" id="validFrom">
+          </div>
+          <div>
+            <label>Valid To (date)</label>
+            <input type="date" id="validTo">
+          </div>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="isDefault">
+          <label style="margin:0">Set as Default</label>
+        </div>
+        <div class="form-row">
+          <button type="submit" style="max-width:200px">Save Price List</button>
+          <button type="button" class="secondary" id="cancelEditBtn" style="max-width:200px">Cancel</button>
+        </div>
+        <div class="error" id="formError"></div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <h2>Price Lists</h2>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Name</th><th>Default</th><th>Valid From</th><th>Valid To</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="pricelistsTableBody"></tbody>
+      </table>
+      <div class="error" id="listError"></div>
+    </div>
+
+    <div class="admin-card" id="itemsCard" style="display:none">
+      <h2>Items for <span id="itemsPricelistName"></span></h2>
+      <form id="itemForm">
+        <input type="hidden" id="itemId">
+        <div class="form-row">
+          <div>
+            <label>Product</label>
+            <select id="productId" required>
+              <option value="">-- Select Product --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Unit</label>
+            <select id="unit" required>
+              <option value="">-- Select Unit --</option>
+              <option value="hour">Hour</option>
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+            </select>
+          </div>
+          <div>
+            <label>Price (INR)</label>
+            <input type="number" id="price" step="0.01" min="0" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit" style="max-width:200px">Save Item</button>
+          <button type="button" class="secondary" id="cancelItemEditBtn" style="max-width:200px">Cancel</button>
+        </div>
+        <div class="error" id="itemFormError"></div>
+      </form>
+
+      <table class="admin-table">
+        <thead>
+          <tr><th>Product</th><th>Unit</th><th>Price</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="itemsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin-pricelists.js"></script>
+</body>
+</html>

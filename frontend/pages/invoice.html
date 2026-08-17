@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @media print {
+    .top-nav, .invoice-actions, .back-link {
+      display: none !important;
+    }
+    body {
+      background: #fff;
+    }
+    .invoice-container {
+      max-width: 100%;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html" id="cartLink">Cart</a>
+      <a href="profile.html" id="profileLink">My Profile</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="invoice-wrap">
+    <a class="back-link" href="orders.html">&larr; Back to Orders</a>
+    
+    <div class="invoice-actions">
+      <button onclick="window.print()">Print/Download as PDF</button>
+      <button class="secondary" onclick="window.location.href='orders.html'">Close</button>
+    </div>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="invoiceContent" style="display:none">
+      <div class="invoice-container">
+        <div class="invoice-header">
+          <div>
+            <h1>INVOICE</h1>
+            <p class="muted">Invoice #<span id="invoiceOrderId"></span></p>
+          </div>
+          <div class="company-info">
+            <strong>AM.BS Rentals</strong>
+            <p class="muted">Your Rental Management Partner</p>
+          </div>
+        </div>
+
+        <div class="invoice-details">
+          <div>
+            <h4>Bill To</h4>
+            <p id="customerName"></p>
+            <p id="customerEmail" class="muted"></p>
+            <p id="customerPhone" class="muted"></p>
+            <p id="customerAddress" class="muted"></p>
+          </div>
+          <div>
+            <table class="invoice-meta">
+              <tr>
+                <td><strong>Invoice Date:</strong></td>
+                <td id="invoiceDate"></td>
+              </tr>
+              <tr>
+                <td><strong>Order ID:</strong></td>
+                <td id="orderId"></td>
+              </tr>
+              <tr>
+                <td><strong>Order Status:</strong></td>
+                <td id="orderStatus"></td>
+              </tr>
+              <tr>
+                <td><strong>Delivery Mode:</strong></td>
+                <td id="deliveryMode"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <table class="invoice-items-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Dates</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceItems"></tbody>
+        </table>
+
+        <div class="invoice-summary">
+          <div class="summary-line">
+            <span>Subtotal:</span>
+            <span id="invoiceSubtotal">₹0.00</span>
+          </div>
+          <div class="summary-line">
+            <span>Deposit (30%):</span>
+            <span id="invoiceDeposit">₹0.00</span>
+          </div>
+          <div class="summary-line total">
+            <span>Total Amount Due:</span>
+            <span id="invoiceTotal">₹0.00</span>
+          </div>
+        </div>
+
+        <div class="invoice-footer">
+          <p><strong>Payment Terms:</strong> 30% deposit due at order confirmation, remaining 70% due at pickup/delivery.</p>
+          <p class="muted">Thank you for your business!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/invoice.js"></script>
+</body>
+</html>

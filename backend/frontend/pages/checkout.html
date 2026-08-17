@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout - AM.BS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="top-nav">
+    <strong class="wordmark"><span class="brand-mark">A</span>AM.BS <span class="tag">RMS</span></strong>
+    <div>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html" id="cartLink">Cart</a>
+      <a href="orders.html" id="ordersLink">My Orders</a>
+      <a href="profile.html" id="profileLink">My Profile</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="checkout-wrap">
+    <a class="back-link" href="cart.html">&larr; Back to Cart</a>
+    <h1>Checkout</h1>
+
+    <div class="error" id="pageError"></div>
+
+    <div id="checkoutContent" style="display:none" class="checkout-grid">
+      <!-- Left: Order Summary -->
+      <div class="checkout-summary">
+        <h2>Order Summary</h2>
+        <table class="cart-table" style="margin-bottom: 20px;">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody id="orderItems"></tbody>
+        </table>
+
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="summarySubtotal">₹0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Deposit (30%):</span>
+            <span id="summaryDeposit">₹0.00</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Due Now:</span>
+            <span id="summaryTotal">₹0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Delivery Form -->
+      <div class="checkout-form-section">
+        <h2>Delivery Information</h2>
+        <form id="checkoutForm">
+          <div class="form-row">
+            <div>
+              <label>Delivery Mode</label>
+              <select id="deliveryMode" required>
+                <option value="">Select delivery mode</option>
+                <option value="store">Store Pickup</option>
+                <option value="ship">Ship to Address</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="addressBlock" style="display:none">
+            <label>Delivery Address</label>
+            <textarea id="deliveryAddress" rows="4" placeholder="Enter your full delivery address" required></textarea>
+          </div>
+
+          <button type="submit">Place Order</button>
+          <div class="error" id="formError"></div>
+          <div class="success" id="formSuccess"></div>
+        </form>
+
+        <p class="muted" style="margin-top: 20px; font-size: 12px;">
+          By placing an order, you agree to our rental terms and conditions.
+          A 30% deposit is required now; the remaining balance will be due at pickup/delivery.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/checkout.js"></script>
+</body>
+</html>
